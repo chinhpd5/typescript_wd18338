@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WD18338</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+<body>
+
+    <div id="app">
+        <!-- <h1 class="heading" title="Xin chào">Tiêu đề 1</h1> -->
+        <!-- <ul>
+            <li>html</li>
+            <li>css</li>
+        </ul> -->
+    </div>
+    
+    <script type="text/babel">
+        const app = document.getElementById('app');
+        const name = "chinhpd5";
+
+        // class -> className
+        // for -> forHTML
+        const h1React2 = (
+            // <h1 id="h1"  className="heading1" title="xin chào">xin chào {name}</h1>
+            <ul style= {{color : "red"} }>
+                <li>html</li>
+                <li>css</li>
+            </ul>
+        )
+
+        ReactDOM.createRoot(app).render(h1React2);
+
+
+        // const ulReact = React.createElement('ul',{},
+        //     React.createElement('li',null,'html'),
+        //     React.createElement('li',null,'css')
+        // )
+
+
+
+
+        // const h1React = React.createElement('h1',{
+        //     className: 'heading',
+        //     title: "Xin chào"
+        // },'Tiêu đề 1');
+
+
+        // const h1Dom = document.createElement('h1');
+        // h1Dom.className = 'heading';
+        // h1Dom.title = "Xin chào";
+        // h1Dom.textContent = 'Tiêu đề 1';
+
+        // const ulDom = document.createElement('ul');
+        // const li1Dom =document.createElement('li');
+        // li1Dom.textContent = 'html'
+        // const li2Dom =document.createElement('li');
+        // li2Dom.textContent = 'css'
+
+        // ulDom.appendChild(li1Dom);
+        // ulDom.appendChild(li2Dom);
+
+
+        // app.appendChild(ulDom);
+    </script>
+</body>
+</html>
