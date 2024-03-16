@@ -6,6 +6,7 @@ type PropAdd={
     onAdd: (data: IProduct)=> void;
 }
 
+//kiểu nhận lại trong form thêm mới
 type Input ={
     name: string,
     price: number
@@ -13,13 +14,18 @@ type Input ={
 
 
 function ProductAdd(prop: PropAdd){
+    // hooks giúp điều hướng trang
     const navigate = useNavigate()
 
-    const { register, handleSubmit } = useForm<Input>()
+    // hooks làm việc với form
+    const { 
+        register, // gán name của thẻ input
+        handleSubmit // nhận giá trị khi submit form
+    } = useForm<Input>() // <Input> kiểu dữ liệu trong form
 
-    const onSubmit = (data: Input) => {
-        prop.onAdd(data)
-        navigate('/product');
+    const onSubmit = (data: Input) => {// data là giá trị nhận lại khi submit
+        prop.onAdd(data);// chuyển data sang prop.onAdd của App.tsx
+        navigate('/product'); // điều hướng về trang danh sách
     }
 
     return (
