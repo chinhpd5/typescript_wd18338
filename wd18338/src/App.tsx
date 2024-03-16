@@ -3,6 +3,8 @@
 import { useEffect, useState } from "react"
 import ProductList from "./components/ProductList";
 import IProduct from "./interfaces/IProduct";
+import { Route, Routes } from "react-router-dom";
+import ProductAdd from "./components/ProductAdd";
 
 
 function App() {
@@ -36,9 +38,17 @@ function App() {
     
   }
 
+  function addHandle(data: IProduct){
+
+  }
+
   return(
     <>
-      <ProductList listData={list} onDelete={deleteHandle} />
+      <Routes>
+        <Route path="/" element= { <h1>Trang chủ</h1> } />
+        <Route path="/product" element= { <ProductList listData={list} onDelete={deleteHandle} /> } />
+        <Route path="/product/add" element ={ <ProductAdd onAdd={addHandle} /> }/>
+      </Routes>
     </>
   )
 }
