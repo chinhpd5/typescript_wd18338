@@ -19,7 +19,7 @@ function ProductList(props: Props){
                         return (
                             <li key={item.id}>
                                 {item.id} | {item.name} | {item.price}
-                                <button onClick={()=>{props.onDelete(item.id)}}>Xóa</button>
+                                <button onClick={()=>{props.onDelete(item.id!)}}>Xóa</button>
                             </li>
                         )
                     })

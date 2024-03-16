@@ -39,7 +39,24 @@ function App() {
   }
 
   function addHandle(data: IProduct){
-
+    fetch('http://localhost:3000/product/',{
+      method: "POST",
+      headers:{
+        'Content-Type': "Application/json"
+      },
+      body: JSON.stringify(data)
+    })
+    .then(newData=>{
+      return newData.json();
+    })
+    .then(newData=>{
+      setList([...list,newData]);
+    })
+    .catch(()=>{
+      console.log("có lỗi khi thêm");
+      
+    })
+    
   }
 
   return(
