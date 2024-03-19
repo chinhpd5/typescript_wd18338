@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import IProduct from "../interfaces/IProduct";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
 
 type PropEdit ={
@@ -14,6 +14,7 @@ type Input ={
 
 function ProductEdit(props: PropEdit){
     const {id} = useParams();
+    const navigate = useNavigate();
     // console.log(id);
     
     const {
@@ -32,8 +33,10 @@ function ProductEdit(props: PropEdit){
             })
     },[]);
 
-    function onSubmit(){
-
+    function onSubmit(data: Input){
+        // console.log(data);
+        props.onEdit(id!, data)
+        navigate("/product");
     }
 
     return(

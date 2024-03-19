@@ -2,7 +2,7 @@
   "product": [
     {
       "id": "1",
-      "name": "product 1",
+      "name": "product 1 new",
       "price": 1000
     },
     {
@@ -12,8 +12,8 @@
     },
     {
       "id": "3",
-      "name": "product 3",
-      "price": 3000
+      "name": "product 3 new",
+      "price": "300001"
     },
     {
       "id": "4",

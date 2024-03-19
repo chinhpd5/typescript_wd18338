@@ -61,7 +61,29 @@ function App() {
   }
 
   function updateHandle(id: string, data: IProduct){
-
+    // console.log({id, data});
+    fetch(`http://localhost:3000/product/${id}`,{
+      method: "PUT",
+      headers: {
+        'Content-Type': 'Application/json'
+      },
+      body: JSON.stringify(data)
+    })
+    .then(data=>{
+      return data.json();
+    })
+    .then(newData=>{
+      setList(list.map(item=> {
+        if(item.id == id)
+          return newData;
+        else
+          return item;
+      }))
+    })
+    .catch(()=>{
+      console.log("Có lỗi khi sửa");
+      
+    })
   }
 
   return(
