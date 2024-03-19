@@ -5,6 +5,7 @@ import ProductList from "./components/ProductList";
 import IProduct from "./interfaces/IProduct";
 import { Route, Routes } from "react-router-dom";
 import ProductAdd from "./components/ProductAdd";
+import ProductEdit from "./components/ProductEdit";
 
 
 function App() {
@@ -59,12 +60,17 @@ function App() {
     
   }
 
+  function updateHandle(id: string, data: IProduct){
+
+  }
+
   return(
     <>
       <Routes>
         <Route path="/" element= { <h1>Trang chủ</h1> } />
         <Route path="/product" element= { <ProductList listData={list} onDelete={deleteHandle} /> } />
         <Route path="/product/add" element ={ <ProductAdd onAdd={addHandle} /> }/>
+        <Route path="/product/edit/:id" element={<ProductEdit onEdit={updateHandle} />} />
       </Routes>
     </>
   )

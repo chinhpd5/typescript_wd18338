@@ -19,7 +19,8 @@ function ProductList(props: Props){
                         return (
                             <li key={item.id}>
                                 {item.id} | {item.name} | {item.price}
-                                <button onClick={()=>{props.onDelete(item.id!)}}>Xóa</button>
+                                <Link className="btn btn-warning mx-3" to={`/product/edit/${item.id}`} >Sửa</Link>
+                                <button className="btn btn-danger" onClick={()=>{props.onDelete(item.id!)}}>Xóa</button>
                             </li>
                         )
                     })
