@@ -9,6 +9,7 @@ import ProductAdd from "./components/Product/ProductAdd";
 import ProductEdit from "./components/Product/ProductEdit";
 import UserList from "./components/User/UserList";
 import UserAdd from "./components/User/UserAdd";
+import Count from "./components/Count";
 
 
 
@@ -148,8 +149,8 @@ function App() {
         <Route path="/user">
           <Route path="" element={<UserList userList={listUser} onDelete={deleteUserHandle}/>} />
           <Route path="add" element={<UserAdd onAdd={handleAddUser}/>} />
-
         </Route>
+        <Route path="/count" element={<Count />}/>
       
         {/* <Route path="/product" element= { <ProductList listData={list} onDelete={deleteHandle} /> } />
         <Route path="/product/add" element ={ <ProductAdd onAdd={addHandle} /> }/>
