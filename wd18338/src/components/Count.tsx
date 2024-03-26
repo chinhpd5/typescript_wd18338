@@ -85,8 +85,8 @@ function Count(prop: PropCount){
         <>
             <button onClick={handleGetData} className="btn btn-primary">Lấy dữ liệu</button>
             
-            {data.isLoading ? <
-                h1>Loading ....</h1> : 
+            {data.isLoading ? 
+                <h1>Loading ....</h1> : 
                 <div>{<ProductList listData={data.listProduct} onDelete={()=>{}}/>}</div>}
 
             <div>

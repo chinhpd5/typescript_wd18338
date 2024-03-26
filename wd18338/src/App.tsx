@@ -1,6 +1,6 @@
 // import Gift from "./components/Gift"
 
-import { useEffect, useState } from "react"
+import { useEffect, useReducer, useState } from "react"
 import ProductList from "./components/Product/ProductList";
 import IProduct from "./interfaces/IProduct";
 import { Route, Routes } from "react-router-dom";
@@ -11,10 +11,55 @@ import UserList from "./components/User/UserList";
 import UserAdd from "./components/User/UserAdd";
 import Count from "./components/Count";
 
+// giá trị khởi tạo cho listProduct
+const initProduct={
+  data : [] as IProduct[],
+}
 
+// biến action.type
+const SET_DATA = 'set_data';
+const ADD_DATA = 'add_data';
+const EDIT_DATA = 'edit_data';
+const DELETE_DATA ='delete_data';
+
+
+function reducerProduct(state:any, action:any){
+  switch(action.type){
+    case SET_DATA:
+      return {
+        ...state,
+        data : action.payload
+      };
+    case ADD_DATA:
+      return {
+        ...state,
+        data : [...state.data, action.payload]
+      };
+    case EDIT_DATA:
+      return {
+        ...state,
+        data : state.data.map((item: IProduct)=>{
+          if(item.id == action.payload.id)
+            return action.payload;
+          else
+            return item;
+        })
+      };
+    case DELETE_DATA:
+      return {
+        ...state,
+        data : state.data.filter((item: IProduct)=>{
+          return item.id != action.payload.id;
+        })
+      };
+    default: 
+      return state;
+  }
+}
 
 function App() {
-  const [list,setList]= useState<IProduct[]>([]);
+  // const [list,setList]= useState<IProduct[]>([]);
+  const [listProduct,dispatchProduct] = useReducer(reducerProduct,initProduct)
   const [listUser,setListUser]= useState<IUser[]>([]);
 
   useEffect(()=>{
@@ -23,7 +68,8 @@ function App() {
         return data.json();
       })
       .then(data =>{
-        setList(data)
+        // setList(data)
+        dispatchProduct({type: SET_DATA, payload: data})
       })
 
       // user
@@ -43,7 +89,8 @@ function App() {
       return data.json();
     })
     .then(data=>{
-      setList(list.filter(item => item.id != data.id));
+      // setList(list.filter(item => item.id != data.id));
+      dispatchProduct({type: DELETE_DATA, payload: data})
     })
     .catch(()=>{
       console.log("xóa lỗi");
@@ -64,7 +111,8 @@ function App() {
       return newData.json();
     })
     .then(newData=>{
-      setList([...list,newData]);
+      // setList([...list,newData]);
+      dispatchProduct({type: ADD_DATA, payload: newData})
     })
     .catch(()=>{
       console.log("có lỗi khi thêm");
@@ -86,12 +134,13 @@ function App() {
       return data.json();
     })   
     .then(newData=>{
-      setList(list.map(item=> {
-        if(item.id == id)
-          return newData;
-        else
-          return item;
-      }))
+      // setList(list.map(item=> {
+      //   if(item.id == id)
+      //     return newData;
+      //   else
+      //     return item;
+      // }))
+      dispatchProduct({type: EDIT_DATA, payload: newData})
     })
     .catch(()=>{
       console.log("Có lỗi khi sửa");
@@ -142,7 +191,7 @@ function App() {
       <Routes>
         <Route path="/" element= { <h1>Trang chủ</h1> } />
         <Route path="/product">
-          <Route path="" element= { <ProductList listData={list} onDelete={deleteHandle} /> } />
+          <Route path="" element= { <ProductList listData={listProduct.data} onDelete={deleteHandle} /> } />
           <Route path="add" element ={ <ProductAdd onAdd={addHandle} /> }/>
           <Route path="edit/:id" element={<ProductEdit onEdit={updateHandle} />} />
         </Route>
