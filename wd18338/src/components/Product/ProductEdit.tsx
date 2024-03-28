@@ -1,18 +1,20 @@
 import { useForm } from "react-hook-form";
 import IProduct from "../../interfaces/IProduct";
 import { useNavigate, useParams } from "react-router-dom";
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
+import { EDIT_DATA, ProductContext } from "../../context/ProductProvide";
 
-type PropEdit ={
-    onEdit: (id: string, data: IProduct) => void
-}
+// type PropEdit ={
+//     onEdit: (id: string, data: IProduct) => void
+// }
 
 type Input ={
     name: string,
     price: number
 }
 
-function ProductEdit(props: PropEdit){
+function ProductEdit(){
+    const {dispatchProduct} = useContext(ProductContext);
     const {id} = useParams();
     const navigate = useNavigate();
     // console.log(id);
@@ -33,9 +35,32 @@ function ProductEdit(props: PropEdit){
             })
     },[]);
 
+    function updateHandle(id: string, data: IProduct){
+        // console.log({id, data});
+        fetch(`http://localhost:3000/product/${id}`,{
+          method: "PUT",
+          headers: {
+            'Content-Type': 'Application/json'
+          },
+          body: JSON.stringify(data)
+        })
+        .then(data=>{
+          return data.json();
+        })   
+        .then(newData=>{
+          
+          dispatchProduct({type: EDIT_DATA, payload: newData})
+        })
+        .catch(()=>{
+          console.log("Có lỗi khi sửa");
+          
+        })
+    }
+
     function onSubmit(data: Input){
         // console.log(data);
-        props.onEdit(id!, data)
+        // props.onEdit(id!, data)
+        updateHandle(id!,data);
         navigate("/product");
     }
 

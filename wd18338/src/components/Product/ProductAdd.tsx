@@ -1,10 +1,12 @@
 import { useForm } from "react-hook-form";
 import IProduct from "../../interfaces/IProduct";
 import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { ADD_DATA, ProductContext } from "../../context/ProductProvide";
 
-type PropAdd={
-    onAdd: (data: IProduct)=> void;
-}
+// type PropAdd={
+//     onAdd: (data: IProduct)=> void;
+// }
 
 //kiểu nhận lại trong form thêm mới
 type Input ={
@@ -13,7 +15,9 @@ type Input ={
 }
 
 
-function ProductAdd(prop: PropAdd){
+function ProductAdd(){
+    const {dispatchProduct} = useContext(ProductContext);
+
     // hooks giúp điều hướng trang
     const navigate = useNavigate()
 
@@ -23,8 +27,31 @@ function ProductAdd(prop: PropAdd){
         handleSubmit // nhận giá trị khi submit form
     } = useForm<Input>() // <Input> kiểu dữ liệu trong form
 
+    function addHandle(data: IProduct){
+        fetch('http://localhost:3000/product/',{
+          method: "POST",
+          headers:{
+            'Content-Type': "Application/json"
+          },
+          body: JSON.stringify(data)
+        })
+        .then(newData=>{
+          return newData.json();
+        })
+        .then(newData=>{
+          // setList([...list,newData]);
+          dispatchProduct({type: ADD_DATA, payload: newData})
+        })
+        .catch(()=>{
+          console.log("có lỗi khi thêm");
+          
+        })
+        
+    }
+
     const onSubmit = (data: Input) => {// data là giá trị nhận lại khi submit
-        prop.onAdd(data);// chuyển data sang prop.onAdd của App.tsx
+        // prop.onAdd(data);// chuyển data sang prop.onAdd của App.tsx
+        addHandle(data)
         navigate('/product'); // điều hướng về trang danh sách
     }
 
