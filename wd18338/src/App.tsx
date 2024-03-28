@@ -191,7 +191,7 @@ function App() {
       <Routes>
         <Route path="/" element= { <h1>Trang chủ</h1> } />
         <Route path="/product">
-          <Route path="" element= { <ProductList listData={listProduct.data} onDelete={deleteHandle} /> } />
+          <Route path="" element= { <ProductList /> } />
           <Route path="add" element ={ <ProductAdd onAdd={addHandle} /> }/>
           <Route path="edit/:id" element={<ProductEdit onEdit={updateHandle} />} />
         </Route>

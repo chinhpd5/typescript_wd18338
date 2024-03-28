@@ -42,9 +42,10 @@ function reducerData (state: any, action:any){
 
 function Count(prop: PropCount){
     const {count, dispatch} = useContext(CountContext);
-    console.log(name);
+    // console.log(name);
     
     // const [count, setCount]= useState(0);
+    // const [count, dispatch] = useReducer(reducer,0)
     const [count2,dispatch2] = useReducer(reducer2,0);
     const [data, dispatchData] = useReducer(reducerData,initData);
 
