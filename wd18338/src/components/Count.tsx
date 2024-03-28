@@ -6,25 +6,7 @@ import { CountContext } from "../context/CountProvider";
 type PropCount={
 }
 
-function reducer(state:any, action:any){
-    console.log("action: ", action);
-    console.log("state trước: ",state);
-    switch(action){
-        case "ADD":
-            state = state + 1
-            break;
-        case "DELETE":
-            state = state -1;
-            break;
-        case "RESET":
-            state = 0;
-            break;
-        default: 
-            state = state;
-    }
-    console.log("state sau: ",state);
-    return state;
-}
+
 function reducer2(state:any, action:any){
     console.log(action);
     
@@ -59,11 +41,10 @@ function reducerData (state: any, action:any){
 }
 
 function Count(prop: PropCount){
-    const {name} = useContext(CountContext);
+    const {count, dispatch} = useContext(CountContext);
     console.log(name);
     
     // const [count, setCount]= useState(0);
-    const [count, dispatch] = useReducer(reducer,0)
     const [count2,dispatch2] = useReducer(reducer2,0);
     const [data, dispatchData] = useReducer(reducerData,initData);
 
