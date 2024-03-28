@@ -1,6 +1,7 @@
-import { useReducer, useState } from "react";
+import { useContext, useReducer, useState } from "react";
 import IProduct from "../interfaces/IProduct";
 import ProductList from "./Product/ProductList";
+import { CountContext } from "../context/CountProvider";
 
 type PropCount={
 }
@@ -58,6 +59,9 @@ function reducerData (state: any, action:any){
 }
 
 function Count(prop: PropCount){
+    const {name} = useContext(CountContext);
+    console.log(name);
+    
     // const [count, setCount]= useState(0);
     const [count, dispatch] = useReducer(reducer,0)
     const [count2,dispatch2] = useReducer(reducer2,0);
