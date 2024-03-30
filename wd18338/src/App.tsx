@@ -10,6 +10,8 @@ import ProductEdit from "./components/Product/ProductEdit";
 import UserList from "./components/User/UserList";
 import UserAdd from "./components/User/UserAdd";
 import Count from "./components/Count";
+import AdminLayout from "./pages/layout/AdminLayout";
+import WebsiteLayout from "./pages/layout/WebsiteLayout";
 
 
 function App() {
@@ -69,21 +71,28 @@ function App() {
   return(
     <>
       <Routes>
-        <Route path="/" element= { <h1>Trang chủ</h1> } />
-        <Route path="/product">
-          <Route path="" element= { <ProductList /> } />
-          <Route path="add" element ={ <ProductAdd /> }/>
-          <Route path="edit/:id" element={<ProductEdit/>} />
+        {/* Giao diện khách hàng */}
+        <Route path="/" element={<WebsiteLayout/>}>
+          <Route path="/" element= { <h1>Trang chủ</h1> } />
+          <Route path="/product" element= { <h1>Sản phẩm</h1> } />
+          <Route path="/contact" element= { <h1>Liên hệ</h1> } />
+          <Route path="/count" element={<Count />}/>
         </Route>
-        <Route path="/user">
-          <Route path="" element={<UserList userList={listUser} onDelete={deleteUserHandle}/>} />
-          <Route path="add" element={<UserAdd onAdd={handleAddUser}/>} />
+
+        {/* giao diện layout admin */}
+        <Route path="/admin" element={<AdminLayout/>}>
+          <Route path="" element= { <h1>Trang chủ admin</h1> } />
+          <Route path="product">
+            <Route path="" element= { <ProductList /> } />
+            <Route path="add" element ={ <ProductAdd /> }/>
+            <Route path="edit/:id" element={<ProductEdit/>} />
+          </Route>
+          <Route path="user">
+            <Route path="" element={<UserList userList={listUser} onDelete={deleteUserHandle}/>} />
+            <Route path="add" element={<UserAdd onAdd={handleAddUser}/>} />
+          </Route>
         </Route>
-        <Route path="/count" element={<Count />}/>
       
-        {/* <Route path="/product" element= { <ProductList listData={list} onDelete={deleteHandle} /> } />
-        <Route path="/product/add" element ={ <ProductAdd onAdd={addHandle} /> }/>
-        <Route path="/product/edit/:id" element={<ProductEdit onEdit={updateHandle} />} /> */}
       </Routes>
     </>
   )
