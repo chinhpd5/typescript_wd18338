@@ -1,6 +1,10 @@
+import { useState } from "react";
 import { Link, Outlet } from "react-router-dom";
 
 function WebsiteLayout(){
+
+    const [user,setUser] = useState(sessionStorage.getItem('user'))
+    
     return(
         <>
             <header>
@@ -35,12 +39,25 @@ function WebsiteLayout(){
                         </ul>
 
                         <ul className="navbar-nav me-3">
-                            <li className="nav-item">
-                                <Link className="nav-link active" aria-current="page" to="/signup">Đăng kí</Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link className="nav-link active" aria-current="page" to="/signin">Đăng nhập</Link>
-                            </li>
+
+                            {
+                                user ?
+                                <>
+                                    <li className="nav-item">
+                                        <span className="nav-link active">Xin chào {user}</span>
+                                    </li>
+                                </> 
+                                :
+                                <>
+                                    <li className="nav-item">
+                                        <Link className="nav-link active" aria-current="page" to="/signup">Đăng kí</Link>
+                                    </li>
+                                    <li className="nav-item">
+                                        <Link className="nav-link active" aria-current="page" to="/signin">Đăng nhập</Link>
+                                    </li>
+                                </>
+                            }
+                           
                         </ul>
 
                     </div>

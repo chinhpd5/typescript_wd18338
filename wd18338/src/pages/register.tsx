@@ -20,11 +20,9 @@ function Regiter(){
         formState: {errors},
         watch
     } = useForm<Input>();
-
     function onSubmit(data:Input){
         console.log(data);
         const {name, email, password} = data;
-
         fetch('http://localhost:3000/register',{
             method :"POST",
             headers:{
