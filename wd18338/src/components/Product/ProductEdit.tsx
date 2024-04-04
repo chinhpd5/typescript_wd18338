@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import IProduct from "../../interfaces/IProduct";
 import { useNavigate, useParams } from "react-router-dom";
 import { useContext, useEffect } from "react";
-import { EDIT_DATA, ProductContext } from "../../context/ProductProvide";
+import { EDIT_DATA, ProductContext } from "../../context/ProductProvider";
 
 // type PropEdit ={
 //     onEdit: (id: string, data: IProduct) => void

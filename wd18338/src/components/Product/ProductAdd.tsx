@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import IProduct from "../../interfaces/IProduct";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
-import { ADD_DATA, ProductContext } from "../../context/ProductProvide";
+import { ADD_DATA, ProductContext } from "../../context/ProductProvider";
 
 // type PropAdd={
 //     onAdd: (data: IProduct)=> void;

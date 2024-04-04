@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import IProduct from "../../interfaces/IProduct";
 import { useContext, useEffect } from "react";
-import { DELETE_DATA, ProductContext, SET_DATA } from "../../context/ProductProvide";
+import { DELETE_DATA, ProductContext, SET_DATA } from "../../context/ProductProvider";
 
 type Props ={
     // listData: IProduct[],
