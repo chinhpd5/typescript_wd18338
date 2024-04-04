@@ -12,6 +12,8 @@ import UserAdd from "./components/User/UserAdd";
 import Count from "./components/Count";
 import AdminLayout from "./pages/layout/AdminLayout";
 import WebsiteLayout from "./pages/layout/WebsiteLayout";
+import Regiter from "./pages/register";
+import Signin from "./pages/signin";
 
 
 function App() {
@@ -73,6 +75,12 @@ function App() {
       <Routes>
         {/* Giao diện khách hàng */}
         <Route path="/" element={<WebsiteLayout/>}>
+          
+          {/* đăng kí */}
+          <Route path="signup" element={<Regiter/>} />
+          {/* đăng nhập */}
+          <Route path="signin" element={<Signin/>} />
+
           <Route path="/" element= { <h1>Trang chủ</h1> } />
           <Route path="/product" element= { <h1>Sản phẩm</h1> } />
           <Route path="/contact" element= { <h1>Liên hệ</h1> } />
