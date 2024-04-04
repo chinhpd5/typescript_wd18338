@@ -1,5 +1,9 @@
+// npm i json-server-auth
+// npm i json-server@0.17.4
+
+
 import { useForm } from "react-hook-form"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
 type Input={
     name: string,
@@ -9,7 +13,7 @@ type Input={
 }
 
 function Regiter(){
-
+    const navigate= useNavigate();
     const {
         register, 
         handleSubmit, 
@@ -19,7 +23,29 @@ function Regiter(){
 
     function onSubmit(data:Input){
         console.log(data);
-        
+        const {name, email, password} = data;
+
+        fetch('http://localhost:3000/register',{
+            method :"POST",
+            headers:{
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({name, email, password})
+        })
+        .then(async(resData)=>{
+            // console.log(resData);
+            if(resData.ok){
+                navigate('/signin');
+            }else{
+                const message = await resData.json();
+                return new Promise((resolve,reject)=>{
+                    reject(message)
+                });
+            }
+        })
+        .catch(err=>{
+            alert("Lỗi: "+ err)
+        })
     }
 
     return(

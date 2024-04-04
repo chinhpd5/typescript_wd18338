@@ -47,6 +47,18 @@
       "age": "1",
       "email": "a@gmail.com",
       "gender": "nam"
+    },
+    {
+      "email": "chinhpd5@fe.edu.vn",
+      "password": "$2a$10$TdREXCEgF3PsQZHBHzfYN.T5/xmkLpIcIdOCyOAf5bINV4i2GOSJi",
+      "name": "chinh",
+      "id": "WA402Wu"
+    },
+    {
+      "email": "chinhpd51@fe.edu.vn",
+      "password": "$2a$10$/oCe9M5OADkDH6Kvl77sWeu7QffnNJeADr0XJtYXI25097OmiM3Ji",
+      "name": "chinhpd5",
+      "id": "niWa1v6"
     }
   ],
   "books": [
